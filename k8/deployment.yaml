@@ -16,7 +16,7 @@
                                                 - name: dockerhub-secret
                                             containers:
                                                 - name: paxarisglobal-admin-fashion-ecommerse-website-frontend
-                                                    image: "devopspaxarisglobalrepo/paxarisglobal-admin-fashion-ecommerse-website-frontend:latest"
+                                                    image: devopspaxarisglobalrepo/paxarisglobal-admin-fashion-ecommerse-website-frontend:c776fa4002e02d9a4b87e34205da279de28f977b
                                                     imagePullPolicy: Always
                                                     ports:
                                                         - containerPort: 80
