@@ -1,0 +1,42 @@
+<section class="experience-shell">
+  <div class="experience-hero">
+    <p>SHOPPING BAG</p>
+    <h1>Your selected styles</h1>
+    <span>{{ items.length }} item groups ready for checkout</span>
+  </div>
+
+  <div class="cart-grid" *ngIf="items.length; else emptyCart">
+    <div>
+      <article class="cart-item" *ngFor="let item of items">
+        <img [src]="item.product.img" [alt]="item.product.name" />
+        <div>
+          <h3>{{ item.product.brand }}</h3>
+          <p>{{ item.product.name }}</p>
+          <strong>${{ item.product.price }}</strong>
+        </div>
+        <div class="quantity">
+          <button (click)="decrease(item.product.id)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="increase(item.product.id)">+</button>
+        </div>
+        <button class="ghost" (click)="remove(item.product.id)">Remove</button>
+      </article>
+    </div>
+
+    <aside class="summary-card">
+      <h2>Price Details</h2>
+      <p><span>Subtotal</span><strong>${{ subtotal }}</strong></p>
+      <p><span>Shipping</span><strong>$49</strong></p>
+      <p class="total"><span>Total</span><strong>${{ grandTotal }}</strong></p>
+      <a class="primary-action" [routerLink]="['/checkout']">Proceed to Checkout</a>
+    </aside>
+  </div>
+
+  <ng-template #emptyCart>
+    <div class="empty-state">
+      <h2>Your cart is waiting for color.</h2>
+      <p>Add products from the catalog to see totals and checkout actions here.</p>
+      <a class="primary-action" [routerLink]="['/products']">Shop Products</a>
+    </div>
+  </ng-template>
+</section>

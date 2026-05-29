@@ -1,0 +1,28 @@
+<section class="experience-shell">
+  <div class="experience-hero">
+    <p>WISHLIST</p>
+    <h1>Wishlist</h1>
+    <span>Save bold looks and move favorites into your cart anytime.</span>
+  </div>
+
+  <div class="experience-card">
+    <div class="form-grid">
+      <label>
+        <span>Email</span>
+        <input placeholder="you@example.com" />
+      </label>
+      <label>
+        <span>Name / Reference</span>
+        <input placeholder="Enter details" />
+      </label>
+      <label class="wide">
+        <span>Notes</span>
+        <textarea placeholder="Add delivery, account, or admin details"></textarea>
+      </label>
+    </div>
+    <div class="highlight-row">
+      <span *ngFor="let item of highlights">{{ item }}</span>
+    </div>
+    <button class="primary-action">Move Favorites</button>
+  </div>
+</section>

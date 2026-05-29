@@ -1,0 +1,62 @@
+<section class="experience-shell">
+  <div class="experience-hero">
+    <p>SIGNUP</p>
+    <h1>Create your style account</h1>
+    <span>Join the studio for faster checkout, saved looks, and order tracking.</span>
+  </div>
+
+  <div class="experience-card">
+    <h2 class="card-title">Create Account</h2>
+    <p class="card-subtitle">Join StyleHub — it's free!</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="signup-form">
+      <div class="form-grid name-row">
+        <label>
+          <span>First Name *</span>
+          <input type="text" formControlName="firstName" placeholder="First name" />
+        </label>
+        <label>
+          <span>Last Name</span>
+          <input type="text" formControlName="lastName" placeholder="Last name" />
+        </label>
+      </div>
+
+      <label class="wide">
+        <span>Email Address *</span>
+        <input type="email" formControlName="email" placeholder="your@email.com" />
+      </label>
+
+      <label class="wide">
+        <span>Mobile Number *</span>
+        <input type="tel" formControlName="phone" placeholder="+91 98765 43210" />
+      </label>
+
+      <label class="wide">
+        <span>Password *</span>
+        <input type="password" formControlName="password" placeholder="Minimum 8 characters" />
+      </label>
+
+      <p class="terms-check">
+        By creating an account, you agree to our
+        <a href="#">Terms of Service</a>
+        and
+        <a href="#">Privacy Policy</a>.
+      </p>
+
+      <p class="error-msg" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <button
+        type="submit"
+        class="primary-action"
+        [disabled]="registerForm.invalid || isLoading"
+      >
+        {{ isLoading ? 'Creating account...' : 'Create My Account' }}
+      </button>
+    </form>
+
+    <p class="switch-auth">
+      Already have an account?
+      <a [routerLink]="['/auth/login']" [queryParams]="{ returnUrl: returnUrl }">Sign in</a>
+    </p>
+  </div>
+</section>

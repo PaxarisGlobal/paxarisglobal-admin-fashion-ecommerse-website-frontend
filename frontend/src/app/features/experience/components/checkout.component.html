@@ -1,0 +1,28 @@
+<section class="experience-shell">
+  <div class="experience-hero">
+    <p>CHECKOUT</p>
+    <h1>Checkout</h1>
+    <span>Confirm delivery, payment mode, and place your order.</span>
+  </div>
+
+  <div class="experience-card">
+    <div class="form-grid">
+      <label>
+        <span>Email</span>
+        <input placeholder="you@example.com" />
+      </label>
+      <label>
+        <span>Name / Reference</span>
+        <input placeholder="Enter details" />
+      </label>
+      <label class="wide">
+        <span>Notes</span>
+        <textarea placeholder="Add delivery, account, or admin details"></textarea>
+      </label>
+    </div>
+    <div class="highlight-row">
+      <span *ngFor="let item of highlights">{{ item }}</span>
+    </div>
+    <button class="primary-action">Place Order</button>
+  </div>
+</section>

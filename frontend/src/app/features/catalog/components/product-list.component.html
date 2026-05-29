@@ -1,0 +1,50 @@
+<button class="mobile-filter-toggle" (click)="toggleFilters()">Filters</button>
+<div class="mobile-filter-backdrop" *ngIf="showFilters" (click)="toggleFilters()"></div>
+
+<section class="listing-layout">
+  <aside class="filters" [class.open]="showFilters">
+    <button class="close-filters" (click)="toggleFilters()">Close ✕</button>
+    <h3>Filters</h3>
+    <div class="filter-block">
+      <h4>Category</h4>
+      <label *ngFor="let c of filters.categories"><input type="checkbox" /> {{ c }}</label>
+    </div>
+    <div class="filter-block">
+      <h4>Brand</h4>
+      <label *ngFor="let b of filters.brands"><input type="checkbox" /> {{ b }}</label>
+    </div>
+    <div class="filter-block">
+      <h4>Size</h4>
+      <div class="size-chips">
+        <span *ngFor="let s of filters.sizes">{{ s }}</span>
+      </div>
+    </div>
+  </aside>
+
+  <section class="listing-main">
+    <div class="toolbar">
+      <input placeholder="Search products" />
+      <select [(ngModel)]="selectedSort">
+        <option>Popularity</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+        <option>Newest</option>
+      </select>
+    </div>
+    <div class="product-grid">
+      <article class="product-card" *ngFor="let p of products">
+        <a [routerLink]="['/product', p.id]">
+          <img [src]="p.img" [alt]="p.name" />
+        </a>
+        <h3>{{ p.brand }}</h3>
+        <p>{{ p.name }}</p>
+        <div class="price-row">
+          <strong>${{ p.price }}</strong>
+          <span class="mrp">${{ p.mrp }}</span>
+          <span class="rating">★ {{ p.rating }}</span>
+        </div>
+        <button (click)="addToCart(p); $event.stopPropagation()">Add to Cart</button>
+      </article>
+    </div>
+  </section>
+</section>

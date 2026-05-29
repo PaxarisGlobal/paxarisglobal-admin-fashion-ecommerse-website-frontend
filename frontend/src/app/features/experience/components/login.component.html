@@ -1,0 +1,39 @@
+<section class="experience-shell">
+  <div class="experience-hero">
+    <p>LOGIN</p>
+    <h1>Welcome back</h1>
+    <span>Sign in to sync wishlist, cart, orders, and premium member offers.</span>
+  </div>
+
+  <div class="experience-card">
+    <h2 class="card-title">Sign In</h2>
+    <p class="card-subtitle">Welcome back to StyleHub</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="signup-form">
+      <label class="wide">
+        <span>Email Address *</span>
+        <input type="email" formControlName="email" placeholder="your@email.com" />
+      </label>
+
+      <label class="wide">
+        <span>Password *</span>
+        <input type="password" formControlName="password" placeholder="Your password" />
+      </label>
+
+      <p class="error-msg" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <button
+        type="submit"
+        class="primary-action"
+        [disabled]="loginForm.invalid || isLoading"
+      >
+        {{ isLoading ? 'Signing in...' : 'Sign In' }}
+      </button>
+    </form>
+
+    <p class="switch-auth">
+      Don't have an account?
+      <a [routerLink]="['/auth/signup']" [queryParams]="{ returnUrl: returnUrl }">Create account</a>
+    </p>
+  </div>
+</section>

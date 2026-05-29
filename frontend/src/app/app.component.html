@@ -1,0 +1,62 @@
+<div class="promo-strip">{{ promo }}</div>
+<header class="main-nav" (click)="closeProfileMenu()">
+  <a class="brand" [routerLink]="['/']">Fashion Ecommerce Website<span>Studio</span></a>
+  <nav class="category-nav" (mouseleave)="closeMegaMenu()">
+    <a *ngFor="let cat of topCategories" [routerLink]="['/products']" [queryParams]="{ category: cat.toLowerCase() }" (mouseenter)="openMegaMenu(cat)">{{ cat }}</a>
+  </nav>
+  <div class="actions" (click)="$event.stopPropagation()">
+    <input class="search" placeholder="Search for products, brands and more" />
+
+    <ng-container *ngIf="!isAuthenticated">
+      <a class="nav-link" [routerLink]="['/auth/login']">Login</a>
+      <a class="nav-link signup" [routerLink]="['/auth/signup']">Sign Up</a>
+    </ng-container>
+
+    <ng-container *ngIf="isAuthenticated && currentUser as user">
+      <div class="profile-menu-wrap">
+        <button
+          type="button"
+          class="profile-link"
+          (click)="toggleProfileMenu($event)"
+          [attr.aria-expanded]="profileMenuOpen"
+          aria-haspopup="true"
+        >
+          <span class="profile-avatar">{{ profileInitial(user) }}</span>
+          <span class="profile-text">
+            <span class="profile-greeting">Hi,</span>
+            <span class="profile-name">{{ profileLabel(user) }}</span>
+          </span>
+        </button>
+
+        <div class="profile-dropdown" *ngIf="profileMenuOpen">
+          <div class="dropdown-header">
+            <strong>{{ profileLabel(user) }}</strong>
+            <span>{{ user.email }}</span>
+          </div>
+          <a class="dropdown-item" [routerLink]="['/account']" (click)="closeProfileMenu()">My Account</a>
+          <button type="button" class="dropdown-item sign-out-item" (click)="signOut()">Sign Out</button>
+        </div>
+      </div>
+    </ng-container>
+
+    <a class="icon-btn" [routerLink]="['/wishlist']" aria-label="Wishlist">♡</a>
+    <a class="icon-btn cart-button" [routerLink]="['/cart']" aria-label="Cart">🛍<span>{{ cartCount }}</span></a>
+  </div>
+</header>
+<section class="mega-menu" *ngIf="activeMegaMenu" (mouseleave)="closeMegaMenu()">
+  <h4>{{ activeMegaMenu }}</h4>
+  <div class="mega-items">
+    <a *ngFor="let item of megaMenu[activeMegaMenu]" [routerLink]="['/products']">{{ item }}</a>
+  </div>
+</section>
+
+<main class="shell-content" (click)="closeProfileMenu()">
+  <section class="quick-links">
+    <a [routerLink]="['/']">Home</a>
+    <a [routerLink]="['/products']">Products</a>
+    <a [routerLink]="['/cart']">Cart</a>
+    <a [routerLink]="['/checkout']">Checkout</a>
+    <a [routerLink]="['/admin']">Admin</a>
+  </section>
+  <router-outlet></router-outlet>
+</main>

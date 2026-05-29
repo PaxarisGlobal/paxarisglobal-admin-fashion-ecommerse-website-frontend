@@ -1,0 +1,33 @@
+<section class="detail-layout">
+  <aside class="thumbs">
+    <button *ngFor="let img of gallery" (click)="selectedImage = img">
+      <img [src]="img" alt="thumb" />
+    </button>
+  </aside>
+  <div class="main-image">
+    <img [src]="selectedImage" alt="product" />
+  </div>
+  <article class="detail-panel">
+    <h2>Roadster Solid Casual Shirt</h2>
+    <p class="rating">4.3 ★ | 2.1k ratings</p>
+    <div class="price">
+      <strong>$1299</strong>
+      <span class="mrp">$2599</span>
+      <span class="off">50% OFF</span>
+    </div>
+    <p class="offer">Extra 10% off with selected cards</p>
+    <h4>Select Size</h4>
+    <div class="sizes">
+      <button *ngFor="let size of sizes" [class.active]="size === selectedSize" (click)="selectedSize = size">{{ size }}</button>
+    </div>
+    <div class="cta">
+      <button class="buy">Buy Now</button>
+      <button class="cart">Add to Cart</button>
+    </div>
+    <div class="meta">
+      <p>Delivery by Tomorrow</p>
+      <p>Easy 14-day returns</p>
+      <p>100% original products</p>
+    </div>
+  </article>
+</section>

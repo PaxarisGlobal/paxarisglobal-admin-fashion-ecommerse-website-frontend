@@ -1,0 +1,74 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
+
+export interface Customer {
+  id: string;
+  name: string;
+  email: string;
+  company: string;
+  phone?: string;
+  address?: string;
+}
+
+export interface Product {
+  id: string;
+  name: string;
+  description?: string;
+  brand?: string;
+  category?: string;
+  imageUrl?: string;
+  price: number;
+  stockQuantity?: number;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ApiService {
+  private readonly baseUrl = environment.apiBaseUrl.replace(/\/$/, '');
+
+  constructor(private http: HttpClient) {}
+
+  getCustomers(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(`${this.baseUrl}/customers`);
+  }
+
+  getCustomerById(id: string): Observable<Customer> {
+    return this.http.get<Customer>(`${this.baseUrl}/customers/${id}`);
+  }
+
+  createCustomer(customer: Omit<Customer, 'id'>): Observable<Customer> {
+    return this.http.post<Customer>(`${this.baseUrl}/customers`, customer);
+  }
+
+  updateCustomer(id: string, customer: Partial<Omit<Customer, 'id'>>): Observable<Customer> {
+    return this.http.put<Customer>(`${this.baseUrl}/customers/${id}`, customer);
+  }
+
+  deleteCustomer(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/customers/${id}`);
+  }
+
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/products`);
+  }
+
+  getProductById(id: string): Observable<Product> {
+    return this.http.get<Product>(`${this.baseUrl}/products/${id}`);
+  }
+
+  createProduct(product: Omit<Product, 'id'>): Observable<Product> {
+    return this.http.post<Product>(`${this.baseUrl}/products`, product);
+  }
+
+  updateProduct(id: string, product: Partial<Omit<Product, 'id'>>): Observable<Product> {
+    return this.http.put<Product>(`${this.baseUrl}/products/${id}`, product);
+  }
+
+  deleteProduct(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/products/${id}`);
+  }
+
+}

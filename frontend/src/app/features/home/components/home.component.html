@@ -1,0 +1,47 @@
+<section class="deals">
+  <article class="deal-card" *ngFor="let deal of deals">
+    <img [src]="deal.img" [alt]="deal.title" />
+    <div class="deal-overlay">
+      <p>{{ deal.subtitle }}</p>
+      <h3>{{ deal.title }}</h3>
+    </div>
+  </article>
+</section>
+
+<section class="hero-grid">
+  <article class="hero-card" *ngFor="let banner of banners">
+    <p>{{ banner.subtitle }}</p>
+    <h2>{{ banner.title }}</h2>
+    <button>{{ banner.cta }}</button>
+  </article>
+</section>
+
+<section class="chips">
+  <button *ngFor="let chip of chips">{{ chip }}</button>
+</section>
+
+<section class="featured">
+  <article class="featured-card" *ngFor="let item of featured">
+    <img [src]="item.img" [alt]="item.label" />
+    <h3>{{ item.label }}</h3>
+  </article>
+</section>
+
+<section class="category-section">
+  <h2>Shop by Category</h2>
+  <div class="category-grid">
+    <a *ngFor="let c of shopByCategory" [routerLink]="['/products']">{{ c }}</a>
+  </div>
+</section>
+
+<section class="brands-section">
+  <h2>Featured Brands</h2>
+  <div class="brand-pills">
+    <span *ngFor="let b of featuredBrands">{{ b }}</span>
+  </div>
+</section>
+
+<section class="catalog-shell">
+  <h2>Trending Products</h2>
+  <a class="browse-link" [routerLink]="['/products']">Browse Full Collection</a>
+</section>

@@ -1,0 +1,48 @@
+<section class="experience-shell" *ngIf="user as u">
+  <div class="experience-hero">
+    <p>ACCOUNT</p>
+    <h1>Hi, {{ displayName(u) }}</h1>
+    <span>Your StyleHub member profile</span>
+  </div>
+
+  <div class="experience-card profile-card">
+    <div class="profile-summary">
+      <div class="profile-avatar-large" aria-hidden="true">{{ (u.firstName || u.fullName || u.email)[0] | uppercase }}</div>
+      <div>
+        <h2>{{ displayName(u) }}</h2>
+        <p class="profile-email">{{ u.email }}</p>
+      </div>
+    </div>
+
+    <dl class="profile-details">
+      <div class="detail-row">
+        <dt>Full name</dt>
+        <dd>{{ displayName(u) }}</dd>
+      </div>
+      <div class="detail-row" *ngIf="u.firstName">
+        <dt>First name</dt>
+        <dd>{{ u.firstName }}</dd>
+      </div>
+      <div class="detail-row" *ngIf="u.lastName">
+        <dt>Last name</dt>
+        <dd>{{ u.lastName }}</dd>
+      </div>
+      <div class="detail-row">
+        <dt>Email</dt>
+        <dd>{{ u.email }}</dd>
+      </div>
+      <div class="detail-row">
+        <dt>Username</dt>
+        <dd>{{ u.id }}</dd>
+      </div>
+      <div class="detail-row" *ngIf="u.roles?.length">
+        <dt>Roles</dt>
+        <dd class="role-tags">
+          <span *ngFor="let role of u.roles">{{ role }}</span>
+        </dd>
+      </div>
+    </dl>
+
+    <button type="button" class="primary-action logout-action" (click)="signOut()">Sign Out</button>
+  </div>
+</section>
